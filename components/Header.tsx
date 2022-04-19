@@ -6,7 +6,7 @@ import { FlagIcon, PlayIcon, SearchIcon, ShoppingCartIcon } from '@heroicons/rea
 
 const Header = () => {
     return (
-        <div>
+        <div className="flex items-center">
             <Image className="rounded-lg"
                 src="https://cdn3.iconfinder.com/data/icons/capsocial-round/500/facebook-512.png"
                 width={40}
@@ -14,8 +14,10 @@ const Header = () => {
                 layout="fixed"
                 alt="fbIcon"
             />
-            <div>
-                <input type="text" placeholder="Search..." />
+            <div className="flex bg-gray-200 p-2 rounded-full">
+                <SearchIcon className="h-6 text-gray-600" />
+                <input className="flex ml-2 items-center bg-transparent outline-none placeholder-gray-500"
+                    type="text" placeholder="Search..." />
             </div>
         </div>
     )
