@@ -1,9 +1,12 @@
-import type { NextPage } from 'next'
+import { GetServerSidePropsContext } from 'next'
+import { getSession } from 'next-auth/react'
 import Head from 'next/head'
 import Header from '../components/Header'
+import { Props } from '../components/Types'
 
 
-const Home: NextPage = () => {
+const Home = (props: Props) => {
+
   return (
     <div className="overflow-x-hidden">
       <Head>
@@ -16,3 +19,12 @@ const Home: NextPage = () => {
   )
 }
 export default Home
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getSession(context);
+  return {
+    props: {
+      session
+    }
+  }
+}
