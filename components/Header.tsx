@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import React from 'react'
 import { BellIcon, ChatIcon, ChevronDownIcon, HomeIcon, UserGroupIcon, ViewGridIcon } from '@heroicons/react/solid';
 import { FlagIcon, PlayIcon, SearchIcon, ShoppingCartIcon } from '@heroicons/react/outline';
 import HeaderIcon from './HeaderIcon';
@@ -7,7 +6,7 @@ import HeaderIcon from './HeaderIcon';
 
 const Header = () => {
     return (
-        <div className="sticky top-0 z-50 bg-white flex items-center p-2 lg:p-5 shadow-md">
+        <div className="sticky top-0 z-50 bg-white flex items-center p-2 lg:p-5 border-b-2">
             <div className="flex items-center">
                 <Image className="rounded-lg"
                     src="https://cdn3.iconfinder.com/data/icons/capsocial-round/500/facebook-512.png"
@@ -18,11 +17,11 @@ const Header = () => {
                 />
                 <div className="flex bg-gray-200 p-2 rounded-full">
                     <SearchIcon className="h-6 text-gray-600" />
-                    <input className="flex ml-2 items-center bg-transparent outline-none placeholder-gray-500
-                    flex-shrink " type="text" placeholder="Search..." />
+                    <input className="md:inline-flex ml-2 items-center bg-transparent outline-none placeholder-gray-500
+                    flex-shrink hidden" type="text" placeholder="Search..." />
                 </div>
             </div>
-            <div className="flex justify-center flex-grow">
+            <div className="flex justify-center flex-grow pl-3">
                 <div className='flex space-x-6 md:space-x-2'>
                     <HeaderIcon active Icon={HomeIcon} />
                     <HeaderIcon Icon={FlagIcon} />
@@ -30,6 +29,9 @@ const Header = () => {
                     <HeaderIcon Icon={ShoppingCartIcon} />
                     <HeaderIcon Icon={UserGroupIcon} />
                 </div>
+            </div>
+            <div className='hidden lg:inline-flex items-center'>
+                <p className="font-semibold pr-3 whitespace-nowrap">User Profile</p>
             </div>
         </div>
     )
