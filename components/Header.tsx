@@ -6,7 +6,7 @@ import HeaderIcon from './HeaderIcon';
 
 const Header = () => {
     return (
-        <div className="sticky top-0 z-50 bg-white flex items-center p-2 lg:p-5 border-b-2">
+        <div className="sticky top-0 z-50 bg-white flex items-center p-1 border-b-2">
             <div className="flex items-center">
                 <Image className="rounded-lg"
                     src="https://cdn3.iconfinder.com/data/icons/capsocial-round/500/facebook-512.png"
@@ -32,6 +32,10 @@ const Header = () => {
             </div>
             <div className='hidden lg:inline-flex items-center'>
                 <p className="font-semibold pr-3 whitespace-nowrap">User Profile</p>
+                <ViewGridIcon className='icon' />
+                <ChatIcon className='icon' />
+                <BellIcon className='icon' />
+                <ChevronDownIcon className='icon' />
             </div>
         </div>
     )
