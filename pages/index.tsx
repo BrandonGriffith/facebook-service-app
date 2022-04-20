@@ -2,11 +2,12 @@ import { GetServerSidePropsContext } from 'next'
 import { getSession } from 'next-auth/react'
 import Head from 'next/head'
 import Header from '../components/Header'
+import Login from '../components/Login'
 import { Props } from '../components/Types'
 
 
 const Home = (props: Props) => {
-
+  if (!props.session) return <Login />
   return (
     <div className="overflow-x-hidden">
       <Head>
