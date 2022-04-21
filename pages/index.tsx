@@ -3,6 +3,7 @@ import { getSession } from 'next-auth/react'
 import Head from 'next/head'
 import Header from '../components/Header'
 import Login from '../components/Login'
+import Sidebar from '../components/Sidebar'
 import { Props } from '../components/Types'
 
 
@@ -16,6 +17,7 @@ const Home = (props: Props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+      <Sidebar />
     </div>
   )
 }

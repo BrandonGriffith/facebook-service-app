@@ -1,7 +1,8 @@
 type HeroIcon = (props: React.ComponentProps<'svg'>) => JSX.Element;
-export interface HeaderIconProps {
+export interface IconProps {
     Icon: HeroIcon,
-    active?: boolean
+    active?: boolean,
+    title?: String
 }
 export interface Props {
     session?: any
