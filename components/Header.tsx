@@ -2,9 +2,17 @@ import Image from 'next/image'
 import { BellIcon, ChatIcon, ChevronDownIcon, HomeIcon, UserGroupIcon, ViewGridIcon } from '@heroicons/react/solid';
 import { FlagIcon, PlayIcon, SearchIcon, ShoppingCartIcon } from '@heroicons/react/outline';
 import HeaderIcon from './HeaderIcon';
+import { signOut, useSession } from 'next-auth/react';
 
 
 const Header = () => {
+    const { data: session }: any = useSession()
+    const userSignOut = () => {
+        const result: boolean = window.confirm("Do you want to logout?");
+        if (result) {
+            signOut();
+        } return
+    }
     return (
         <div className="sticky top-0 z-50 bg-white flex items-center p-1 border-b-2">
             <div className="flex items-center">
@@ -28,10 +36,19 @@ const Header = () => {
                     <HeaderIcon Icon={PlayIcon} />
                     <HeaderIcon Icon={ShoppingCartIcon} />
                     <HeaderIcon Icon={UserGroupIcon} />
+                    <p className="font-semibold sm:pr-3 sm:pl-3 whitespace-nowrap cursor-pointer
+                    hover:text-blue-400 text-center mt-2 sm:mt-4" onClick={() => userSignOut()}>Logout</p>
                 </div>
             </div>
             <div className='hidden lg:inline-flex items-center'>
-                <p className="font-semibold pr-3 whitespace-nowrap">User Profile</p>
+                <Image
+                    src={session.user.image}
+                    height={40}
+                    width={40}
+                    alt="userProfilePic"
+                    className="rounded-full"
+                />
+                <p className="font-semibold pr-3 pl-3 whitespace-nowrap">{session.user.name}</p>
                 <ViewGridIcon className='icon' />
                 <ChatIcon className='icon' />
                 <BellIcon className='icon' />
