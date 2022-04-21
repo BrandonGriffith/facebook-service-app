@@ -4,7 +4,8 @@ import { IconProps } from "./Types"
 
 const SidebarRow = (props: IconProps) => {
     return (
-        <div>
+        <div className="flex items-center space-x-2 p-2 rounded-xl 
+        cursor-pointer hover:bg-gray-200">
             {props.src && (
                 <Image
                     src={props.src}
@@ -20,7 +21,7 @@ const SidebarRow = (props: IconProps) => {
                     className="h-8 w-8 text-blue-400"
                 />
             )}
-            <p className="hidden sm:inline-flex font-bold">{props.title}</p>
+            <p className="hidden lg:inline-flex font-bold">{props.title}</p>
         </div>
     )
 }
