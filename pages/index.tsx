@@ -17,7 +17,9 @@ const Home = (props: Props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Sidebar />
+      <main className='flex'>
+        <Sidebar />
+      </main>
     </div>
   )
 }
