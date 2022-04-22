@@ -2,7 +2,7 @@ import UserStories from "./UserStories"
 
 const UserFeed = () => {
     return (
-        <div>
+        <div className="flex-grow h-screen">
             <div>
                 <UserStories />
             </div>

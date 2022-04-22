@@ -8,3 +8,8 @@ export interface IconProps {
 export interface Props {
     session?: any
 }
+export interface StoryProps {
+    name: string,
+    src: string,
+    profile: string
+}
