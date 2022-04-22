@@ -3,15 +3,17 @@ import { StoryProps } from "../Types"
 
 const StoryCard = (props: StoryProps) => {
     return (
-        <div className="relative w-40 h-60 p-1">
+        <div className="relative cursor-pointer overflow-x w-[70px] h-40 xl:w-40 xl:h-60 p-1">
             <Image
                 src={props.profile}
                 width={40}
                 height={40}
                 objectFit="cover"
                 layout="fixed"
-                className="rounded-full absolute z-10 top-10 opacity-0 lg:opacity-100"
+                className="rounded-full absolute z-10 top-10 opacity-0 xl:opacity-100"
             />
+            <h1 className="absolute text-white z-10 text-lg overflow-hidden 
+            bottom-5 left-5 font-bold hidden xl:inline-flex ">{props.name}</h1>
             <Image
                 src={props.src}
                 layout="fill"
