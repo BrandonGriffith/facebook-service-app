@@ -5,6 +5,7 @@ import Header from '../components/Header'
 import Login from '../components/Login'
 import Sidebar from '../components/Sidebar'
 import { Props } from '../components/Types'
+import UserFeed from '../components/main_feed/UserFeed'
 
 
 const Home = (props: Props) => {
@@ -19,6 +20,7 @@ const Home = (props: Props) => {
       <Header />
       <main className='flex'>
         <Sidebar />
+        <UserFeed />
       </main>
     </div>
   )
