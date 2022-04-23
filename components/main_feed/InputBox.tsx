@@ -30,15 +30,15 @@ const InputBox = () => {
                 </form>
             </div>
             <div className="flex justify-evenly border-t-2 p-2">
-                <div>
+                <div className="inputBoxIcon">
                     <VideoCameraIcon className="h-8 text-red-600" />
                     <p className="text-sm sm:text-lg">Add Video</p>
                 </div>
-                <div>
+                <div className="inputBoxIcon">
                     <CameraIcon className="h-8 text-green-400" />
                     <p className="text-sm sm:text-lg">Add Image</p>
                 </div>
-                <div>
+                <div className="inputBoxIcon">
                     <EmojiHappyIcon className="h-8 text-yellow-400" />
                     <p className="text-sm sm:text-lg">Add Emoji</p>
                 </div>
