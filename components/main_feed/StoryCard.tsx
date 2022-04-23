@@ -11,6 +11,7 @@ const StoryCard = (props: StoryProps) => {
                 objectFit="cover"
                 layout="fixed"
                 className="rounded-full absolute z-10 top-10 opacity-0 xl:opacity-100"
+                priority
             />
             <h1 className="absolute text-white z-10 text-lg overflow-hidden 
             bottom-5 left-5 font-bold hidden xl:inline-flex ">{props.name}</h1>
@@ -18,6 +19,7 @@ const StoryCard = (props: StoryProps) => {
                 src={props.src}
                 layout="fill"
                 className="object-cover filter z-1 rounded-full xl:rounded-xl brightness-75 p-1"
+                priority
             />
         </div>
     )
