@@ -29,6 +29,20 @@ const InputBox = () => {
                     <button type="submit" hidden onClick={(e) => submitPost(e)} />
                 </form>
             </div>
+            <div className="flex justify-evenly border-t-2 p-2">
+                <div>
+                    <VideoCameraIcon className="h-8 text-red-600" />
+                    <p className="text-sm sm:text-lg">Add Video</p>
+                </div>
+                <div>
+                    <CameraIcon className="h-8 text-green-400" />
+                    <p className="text-sm sm:text-lg">Add Image</p>
+                </div>
+                <div>
+                    <EmojiHappyIcon className="h-8 text-yellow-400" />
+                    <p className="text-sm sm:text-lg">Add Emoji</p>
+                </div>
+            </div>
         </div>
     )
 }
