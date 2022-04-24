@@ -4,8 +4,7 @@ import { EmojiHappyIcon } from "@heroicons/react/outline"
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/solid"
 import { useRef } from "react"
 import { db } from '../../firebase'
-import { serverTimestamp } from 'firebase/firestore'
-
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
 
 const InputBox = () => {
@@ -14,7 +13,8 @@ const InputBox = () => {
     const submitPost = (e: React.SyntheticEvent) => {
         e.preventDefault();
         if (!inputRef.current.value) return;
-        db.collection('posts').add({
+        const ref = collection(db, "posts");
+        addDoc(ref, {
             name: session.user.name,
             email: session.user.email,
             message: inputRef.current.value,
