@@ -2,12 +2,25 @@ import { useSession } from "next-auth/react"
 import Image from "next/image"
 import { EmojiHappyIcon } from "@heroicons/react/outline"
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/solid"
+import { useRef } from "react"
+import { db } from '../../firebase'
+import { serverTimestamp } from 'firebase/firestore'
 
 
 const InputBox = () => {
     const { data: session }: any = useSession()
+    const inputRef: any = useRef(null);
     const submitPost = (e: React.SyntheticEvent) => {
         e.preventDefault();
+        if (!inputRef.current.value) return;
+        db.collection('posts').add({
+            name: session.user.name,
+            email: session.user.email,
+            message: inputRef.current.value,
+            image: session.user.image,
+            createdAt: serverTimestamp()
+        })
+        inputRef.current.value = "";
     }
     return (
         <div className="p-1 bg-white text-gray-600 font-medium
@@ -24,7 +37,8 @@ const InputBox = () => {
                 <form className="flex flex-1">
                     <input type="text" name="userpost" id="userpost" placeholder="Enter post here..."
                         className="flex-grow px-2 rounded-full h-14
-                    focus:outline-none mt-4 bg-gray-200"
+                        focus:outline-none mt-4 bg-gray-200"
+                        ref={inputRef}
                     />
                     <button type="submit" hidden onClick={(e) => submitPost(e)} />
                 </form>

@@ -36,3 +36,4 @@ yarn-error.log*
 
 algos
 firebase.js
+firebase.ts
