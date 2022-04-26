@@ -4,8 +4,8 @@ import { EmojiHappyIcon } from "@heroicons/react/outline"
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/solid"
 import { useRef, useState } from "react"
 import { db, storage } from '../../firebase'
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
-import { ref, uploadBytes } from 'firebase/storage'
+import { collection, addDoc, serverTimestamp, doc, setDoc, DocumentReference } from 'firebase/firestore'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 
 
 const InputBox = () => {
@@ -24,14 +24,24 @@ const InputBox = () => {
             message: inputRef.current.value,
             image: session.user.image,
             createdAt: serverTimestamp()
-        }).then(doc => {
+        }).then((docu) => {
             if (postImageUpload) {
-                const uploadImage: any = ref(storage, `posts/${doc.id}`);
-                uploadBytes(uploadImage, postImageUpload,).then(() => { })
+                const uploadImage: any = ref(storage, `posts/${docu.id}`);
+                uploadBytes(uploadImage, postImageUpload,).then(() => {
+                    addImageToPost(uploadImage, docu);
+                });
             }
         })
         inputRef.current.value = "";
         nullImage();
+    }
+    const addImageToPost = (image: any, docu: DocumentReference) => {
+        getDownloadURL(image).then(url => {
+            const myDocument = doc(db, `posts`, `${docu.id}`);
+            setDoc(myDocument, {
+                postImage: url
+            }, { merge: true })
+        })
     }
     const addImage = (e: any) => {
         const addedFile = new FileReader();
