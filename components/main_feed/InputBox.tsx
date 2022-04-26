@@ -26,8 +26,7 @@ const InputBox = () => {
         }).then(doc => {
             if (postImage) {
                 const uploadImage: any = ref(storage, `posts/${doc.id}`);
-                // uploadBytes(uploadImage, postImage,).then(() => { })
-                uploadImage.on("state_change", null, () => { }, () => { })
+                uploadBytes(uploadImage, postImage,).then(() => { })
             }
         })
         inputRef.current.value = "";
