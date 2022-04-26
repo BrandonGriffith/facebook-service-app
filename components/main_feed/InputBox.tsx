@@ -3,8 +3,9 @@ import Image from "next/image"
 import { EmojiHappyIcon } from "@heroicons/react/outline"
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/solid"
 import { useRef, useState } from "react"
-import { db } from '../../firebase'
+import { db, storage } from '../../firebase'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { ref, uploadBytes } from 'firebase/storage'
 
 
 const InputBox = () => {
@@ -15,15 +16,22 @@ const InputBox = () => {
     const submitPost = (e: React.SyntheticEvent) => {
         e.preventDefault();
         if (!inputRef.current.value) return;
-        const ref = collection(db, "posts");
-        addDoc(ref, {
+        const coll = collection(db, "posts");
+        addDoc(coll, {
             name: session.user.name,
             email: session.user.email,
             message: inputRef.current.value,
             image: session.user.image,
             createdAt: serverTimestamp()
+        }).then(doc => {
+            if (postImage) {
+                const uploadImage: any = ref(storage, `posts/${doc.id}`);
+                // uploadBytes(uploadImage, postImage,).then(() => { })
+                uploadImage.on("state_change", null, () => { }, () => { })
+            }
         })
         inputRef.current.value = "";
+        nullImage();
     }
     const addImage = (e: any) => {
         const addedFile = new FileReader();
@@ -65,7 +73,7 @@ const InputBox = () => {
                             height={70}
                             width={90}
                             alt="imageToPost"
-                            className="object-contain"
+                            className="object-contain rounded-lg"
                         />
                         <p className="text-sm text-center">Remove Image</p>
                     </div>
