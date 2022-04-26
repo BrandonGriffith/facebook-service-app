@@ -11,6 +11,7 @@ import { ref, uploadBytes } from 'firebase/storage'
 const InputBox = () => {
     const { data: session }: any = useSession()
     const [postImage, setPostImage] = useState(null);
+    const [postImageUpload, setPostImageUpload] = useState(null);
     const inputRef: any = useRef(null);
     const imageRef: any = useRef(null);
     const submitPost = (e: React.SyntheticEvent) => {
@@ -24,9 +25,9 @@ const InputBox = () => {
             image: session.user.image,
             createdAt: serverTimestamp()
         }).then(doc => {
-            if (postImage) {
+            if (postImageUpload) {
                 const uploadImage: any = ref(storage, `posts/${doc.id}`);
-                uploadBytes(uploadImage, postImage,).then(() => { })
+                uploadBytes(uploadImage, postImageUpload,).then(() => { })
             }
         })
         inputRef.current.value = "";
@@ -40,9 +41,12 @@ const InputBox = () => {
         addedFile.onload = (ee: any) => {
             setPostImage(ee.target.result)
         }
+        setPostImageUpload(e.target.files[0]);
+        inputRef.current?.focus();
     }
     const nullImage = () => {
         setPostImage(null);
+        setPostImageUpload(null);
     }
     return (
         <div className="p-1 bg-white text-gray-600 font-medium
