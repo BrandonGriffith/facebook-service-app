@@ -10,8 +10,8 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 
 const InputBox = () => {
     const { data: session }: any = useSession()
-    const [postImage, setPostImage] = useState(null);
-    const [postImageUpload, setPostImageUpload] = useState(null);
+    const [ImagePreview, setImagePreview] = useState(null);
+    const [ImageToUpload, setImageToUpload] = useState(null);
     const inputRef: any = useRef(null);
     const imageRef: any = useRef(null);
     const submitPost = (e: React.SyntheticEvent) => {
@@ -25,20 +25,20 @@ const InputBox = () => {
             image: session.user.image,
             createdAt: serverTimestamp()
         }).then((docu) => {
-            if (postImageUpload) {
-                const uploadImage: any = ref(storage, `posts/${docu.id}`);
-                uploadBytes(uploadImage, postImageUpload,).then(() => {
-                    addImageToPost(uploadImage, docu);
+            if (ImageToUpload) {
+                const storageRef: any = ref(storage, `posts/${docu.id}`);
+                uploadBytes(storageRef, ImageToUpload,).then(() => {
+                    addImageToPost(storageRef, docu);
                 });
             }
         })
         inputRef.current.value = "";
         nullImage();
     }
-    const addImageToPost = (image: any, docu: DocumentReference) => {
-        getDownloadURL(image).then(url => {
-            const myDocument = doc(db, `posts`, `${docu.id}`);
-            setDoc(myDocument, {
+    const addImageToPost = (storageRef: any, docu: DocumentReference) => {
+        getDownloadURL(storageRef).then(url => {
+            const postToMerge = doc(db, `posts`, `${docu.id}`);
+            setDoc(postToMerge, {
                 postImage: url
             }, { merge: true })
         })
@@ -49,14 +49,14 @@ const InputBox = () => {
             addedFile.readAsDataURL(e.target.files[0])
         }
         addedFile.onload = (ee: any) => {
-            setPostImage(ee.target.result)
+            setImagePreview(ee.target.result)
         }
-        setPostImageUpload(e.target.files[0]);
+        setImageToUpload(e.target.files[0]);
         inputRef.current?.focus();
     }
     const nullImage = () => {
-        setPostImage(null);
-        setPostImageUpload(null);
+        setImagePreview(null);
+        setImageToUpload(null);
     }
     return (
         <div className="p-1 bg-white text-gray-600 font-medium
@@ -78,11 +78,11 @@ const InputBox = () => {
                     />
                     <button type="submit" hidden onClick={(e) => submitPost(e)} />
                 </form>
-                {postImage && (
+                {ImagePreview && (
                     <div onClick={nullImage} className="flex flex-col transition duration-150
                     transform hover:scale-110 cursor-pointer filter hover:brightness-110">
                         <Image
-                            src={postImage}
+                            src={ImagePreview}
                             height={70}
                             width={90}
                             alt="imageToPost"
