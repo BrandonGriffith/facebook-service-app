@@ -14,6 +14,7 @@ const InputBox = () => {
     const [ImageToUpload, setImageToUpload] = useState(null);
     const inputRef: any = useRef(null);
     const imageRef: any = useRef(null);
+
     const submitPost = (e: React.SyntheticEvent) => {
         e.preventDefault();
         if (!inputRef.current.value) return;
@@ -24,7 +25,7 @@ const InputBox = () => {
             message: inputRef.current.value,
             image: session.user.image,
             createdAt: serverTimestamp()
-        }).then((docu) => {
+        }).then(docu => {
             if (ImageToUpload) {
                 const storageRef: any = ref(storage, `posts/${docu.id}`);
                 uploadBytes(storageRef, ImageToUpload,).then(() => {
@@ -35,29 +36,27 @@ const InputBox = () => {
         inputRef.current.value = "";
         nullImage();
     }
+
     const addImageToPost = (storageRef: any, docu: DocumentReference) => {
         getDownloadURL(storageRef).then(url => {
             const postToMerge = doc(db, `posts`, `${docu.id}`);
-            setDoc(postToMerge, {
-                postImage: url
-            }, { merge: true })
+            setDoc(postToMerge, { postImage: url }, { merge: true });
         })
     }
-    const addImage = (e: any) => {
-        const addedFile = new FileReader();
-        if (e.target.files[0]) {
-            addedFile.readAsDataURL(e.target.files[0])
-        }
-        addedFile.onload = (ee: any) => {
-            setImagePreview(ee.target.result)
-        }
+
+    const loadImageIntoState = (e: any) => {
+        const fileReader = new FileReader();
+        if (e.target.files[0]) fileReader.readAsDataURL(e.target.files[0]);
+        fileReader.onload = (ee: any) => setImagePreview(ee.target.result);
         setImageToUpload(e.target.files[0]);
         inputRef.current?.focus();
     }
+
     const nullImage = () => {
         setImagePreview(null);
         setImageToUpload(null);
     }
+
     return (
         <div className="p-1 bg-white text-gray-600 font-medium
         rounded-xl shadow-md">
@@ -100,7 +99,7 @@ const InputBox = () => {
                 <div className="inputBoxIcon" onClick={() => imageRef.current.click()}>
                     <CameraIcon className="h-8 text-green-400" />
                     <p className="text-sm sm:text-lg">Add Image</p>
-                    <input type="file" onChange={addImage} ref={imageRef} hidden />
+                    <input type="file" onChange={loadImageIntoState} ref={imageRef} hidden />
                 </div>
                 <div className="inputBoxIcon" onClick={() => imageRef.current.click()}>
                     <EmojiHappyIcon className="h-8 text-yellow-400" />
