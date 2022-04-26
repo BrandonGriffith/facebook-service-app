@@ -1,20 +1,21 @@
-import { useSession } from "next-auth/react"
 import Image from "next/image"
+import { useSession } from "next-auth/react"
 import { EmojiHappyIcon } from "@heroicons/react/outline"
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/solid"
 import { useRef, useState } from "react"
 import { db, storage } from '../../firebase'
 import { collection, addDoc, serverTimestamp, doc, setDoc, DocumentReference } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { Session } from "../Types"
 
 
 const InputBox = () => {
-    const { data: session }: any = useSession()
+    const { data: userSession }: any = useSession();
+    const session: Session = userSession;
     const [ImagePreview, setImagePreview] = useState(null);
     const [ImageToUpload, setImageToUpload] = useState(null);
     const inputRef: any = useRef(null);
     const imageRef: any = useRef(null);
-
     const submitPost = (e: React.SyntheticEvent) => {
         e.preventDefault();
         if (!inputRef.current.value) return;
@@ -28,7 +29,7 @@ const InputBox = () => {
         }).then(docu => {
             if (ImageToUpload) {
                 const storageRef: any = ref(storage, `posts/${docu.id}`);
-                uploadBytes(storageRef, ImageToUpload,).then(() => {
+                uploadBytes(storageRef, ImageToUpload).then(() => {
                     addImageToPost(storageRef, docu);
                 });
             }
@@ -45,8 +46,9 @@ const InputBox = () => {
     }
 
     const loadImageIntoState = (e: any) => {
+        if (!e.target.files[0]) return;
         const fileReader = new FileReader();
-        if (e.target.files[0]) fileReader.readAsDataURL(e.target.files[0]);
+        fileReader.readAsDataURL(e.target.files[0]);
         fileReader.onload = (ee: any) => setImagePreview(ee.target.result);
         setImageToUpload(e.target.files[0]);
         inputRef.current?.focus();

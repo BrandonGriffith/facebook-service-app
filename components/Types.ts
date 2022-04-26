@@ -13,3 +13,10 @@ export interface StoryProps {
     src: string,
     profile: string
 }
+export interface Session {
+    user: {
+        name: string,
+        email: string,
+        image: string
+    }
+}
