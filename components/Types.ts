@@ -26,3 +26,11 @@ export interface UserSession {
     data: Nullable<Session> | any,
     status: string
 }
+export interface postProps {
+    name: string,
+    message: string,
+    email: string,
+    image: string,
+    postImage: string,
+    createdAt: string
+}

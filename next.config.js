@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
     domains: ['localhost', 'cdn3.iconfinder.com', 'images.freeimages.com',
     'platform-lookaside.fbsbx.com', 'firebasestorage.googleapis.com']

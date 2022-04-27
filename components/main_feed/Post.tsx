@@ -1,6 +1,7 @@
 import Image from "next/image"
+import { postProps } from "../Types"
 
-const Post = (props: any) => {
+const Post = (props: postProps) => {
     return (
         <div className="flex flex-col">
             <div>
