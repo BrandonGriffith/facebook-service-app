@@ -1,4 +1,5 @@
 type HeroIcon = (props: React.ComponentProps<'svg'>) => JSX.Element;
+type Nullable<T> = T | null;
 export interface IconProps {
     Icon?: HeroIcon,
     active?: boolean,
@@ -18,5 +19,10 @@ export interface Session {
         name: string,
         email: string,
         image: string
-    }
+    },
+    expires: string
+}
+export interface UserSession {
+    data: Nullable<Session> | any,
+    status: string
 }

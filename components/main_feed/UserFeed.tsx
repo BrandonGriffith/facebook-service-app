@@ -1,4 +1,5 @@
 import InputBox from "./InputBox"
+import Posts from "./Posts"
 import UserStories from "./UserStories"
 
 const UserFeed = () => {
@@ -7,6 +8,7 @@ const UserFeed = () => {
             <div className="mx-auto max-w-md md:max-w-lg lg:max-w-2xl">
                 <UserStories />
                 <InputBox />
+                <Posts />
             </div>
         </div>
     )

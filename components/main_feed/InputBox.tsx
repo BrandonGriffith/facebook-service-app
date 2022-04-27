@@ -5,12 +5,12 @@ import { CameraIcon, VideoCameraIcon } from "@heroicons/react/solid"
 import { useRef, useState } from "react"
 import { db, storage } from '../../firebase'
 import { collection, addDoc, serverTimestamp, doc, setDoc, DocumentReference } from 'firebase/firestore'
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
-import { Session } from "../Types"
+import { getDownloadURL, ref, StorageReference, uploadBytes } from 'firebase/storage'
+import { Session, UserSession } from "../Types"
 
 
 const InputBox = () => {
-    const { data: userSession }: any = useSession();
+    const { data: userSession }: UserSession = useSession();
     const session: Session = userSession;
     const [ImagePreview, setImagePreview] = useState(null);
     const [ImageToUpload, setImageToUpload] = useState(null);
@@ -28,7 +28,7 @@ const InputBox = () => {
             createdAt: serverTimestamp()
         }).then(docu => {
             if (ImageToUpload) {
-                const storageRef: any = ref(storage, `posts/${docu.id}`);
+                const storageRef: StorageReference = ref(storage, `posts/${docu.id}`);
                 uploadBytes(storageRef, ImageToUpload).then(() => {
                     addImageToPost(storageRef, docu);
                 });
@@ -38,16 +38,16 @@ const InputBox = () => {
         nullImage();
     }
 
-    const addImageToPost = (storageRef: any, docu: DocumentReference) => {
+    const addImageToPost = (storageRef: StorageReference, docu: DocumentReference) => {
         getDownloadURL(storageRef).then(url => {
             const postToMerge = doc(db, `posts`, `${docu.id}`);
             setDoc(postToMerge, { postImage: url }, { merge: true });
         })
     }
 
-    const loadImageIntoState = (e: any) => {
+    const loadImageIntoState = (e: React.BaseSyntheticEvent) => {
         if (!e.target.files[0]) return;
-        const fileReader = new FileReader();
+        const fileReader: FileReader = new FileReader();
         fileReader.readAsDataURL(e.target.files[0]);
         fileReader.onload = (ee: any) => setImagePreview(ee.target.result);
         setImageToUpload(e.target.files[0]);
