@@ -26,6 +26,16 @@ const Post = (props: postProps) => {
                     {props.message}
                 </p>
             </div>
+            {props.postImage && (
+                <div className="relative bg-white h-60">
+                    <Image
+                        src={props.postImage}
+                        alt="post image"
+                        objectFit="cover"
+                        layout="fill"
+                    />
+                </div>
+            )}
         </div>
     )
 }
