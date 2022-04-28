@@ -15,14 +15,10 @@ const Post = (props: postProps) => {
                     />
                     <div>
                         <p className="text-sm font-bold">{props.name}</p>
-                        <p className="text-xs text-gray-400">
-                            {new Date(props.createdAt?.toDate()).toLocaleString()}
-                        </p>
+                        <p className="text-xs text-gray-400">{new Date(props.createdAt?.toDate()).toLocaleString()}</p>
                     </div>
                 </div>
-                <p className="p-2">
-                    {props.message}
-                </p>
+                <p className="p-2">{props.message}</p>
             </div>
             {props.postImage && (
                 <div className="relative bg-white h-96">
