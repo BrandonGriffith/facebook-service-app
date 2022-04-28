@@ -14,9 +14,7 @@ const Post = (props: postProps) => {
                         className="rounded-full cursor-pointer"
                     />
                     <div>
-                        <p className="text-sm font-bold">
-                            {props.name}
-                        </p>
+                        <p className="text-sm font-bold">{props.name}</p>
                         <p className="text-xs text-gray-400">
                             {new Date(props.createdAt?.toDate()).toLocaleString()}
                         </p>
