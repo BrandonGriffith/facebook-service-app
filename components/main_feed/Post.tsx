@@ -34,6 +34,7 @@ const Post = (props: postProps) => {
                         objectFit="cover"
                         layout="fill"
                         className="rounded-lg"
+                        priority
                     />
                 </div>
             )}
