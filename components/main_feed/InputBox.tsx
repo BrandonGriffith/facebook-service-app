@@ -34,7 +34,7 @@ const InputBox = (props: updateProps) => {
                 });
             }
         })
-        setTimeout(() => { props.setUpdatePosts(!props.updatePosts) }, 500);
+        setTimeout(() => { props.setUpdatePosts(!props.updatePosts) }, 3000);
         inputRef.current.value = "";
         nullImage();
     }

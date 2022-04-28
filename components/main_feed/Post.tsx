@@ -27,12 +27,13 @@ const Post = (props: postProps) => {
                 </p>
             </div>
             {props.postImage && (
-                <div className="relative bg-white h-60">
+                <div className="relative bg-white h-96">
                     <Image
                         src={props.postImage}
                         alt="post image"
                         objectFit="cover"
                         layout="fill"
+                        className="rounded-lg"
                     />
                 </div>
             )}
