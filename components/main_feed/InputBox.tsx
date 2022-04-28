@@ -6,10 +6,10 @@ import { useRef, useState } from "react"
 import { db, storage } from '../../firebase'
 import { collection, addDoc, serverTimestamp, doc, setDoc, DocumentReference } from 'firebase/firestore'
 import { getDownloadURL, ref, StorageReference, uploadBytes } from 'firebase/storage'
-import { Session, UserSession } from "../Types"
+import { Session, updateProps, UserSession } from "../Types"
 
 
-const InputBox = () => {
+const InputBox = (props: updateProps) => {
     const { data: userSession }: UserSession = useSession();
     const session: Session = userSession;
     const [ImagePreview, setImagePreview] = useState(null);
@@ -34,6 +34,7 @@ const InputBox = () => {
                 });
             }
         })
+        setTimeout(() => { props.setUpdatePosts(!props.updatePosts) }, 500);
         inputRef.current.value = "";
         nullImage();
     }

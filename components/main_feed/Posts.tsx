@@ -4,9 +4,10 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../firebase";
+import { updateProps } from "../Types";
 import Post from "./Post";
 
-const Posts = () => {
+const Posts = (props: updateProps) => {
     const [allPosts, setAllPosts] = useState<QuerySnapshot | null>(null);
 
     useEffect(() => {
@@ -17,7 +18,7 @@ const Posts = () => {
             setAllPosts(data);
         }
         getPosts();
-    }, []);
+    }, [props.updatePosts]);
 
     return (
         <div>

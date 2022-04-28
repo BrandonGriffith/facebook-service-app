@@ -34,3 +34,7 @@ export interface postProps {
     postImage: string,
     createdAt: any
 }
+export interface updateProps {
+    updatePosts: boolean,
+    setUpdatePosts: Function
+}

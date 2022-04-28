@@ -22,6 +22,9 @@ const Post = (props: postProps) => {
                         </p>
                     </div>
                 </div>
+                <p className="p-2">
+                    {props.message}
+                </p>
             </div>
         </div>
     )

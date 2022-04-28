@@ -6,10 +6,12 @@ import Login from '../components/Login'
 import Sidebar from '../components/Sidebar'
 import { Props } from '../components/Types'
 import UserFeed from '../components/main_feed/UserFeed'
+import { useState } from 'react'
 
 
 const Home = (props: Props) => {
   if (!props.session) return <Login />
+  const [updatePosts, setUpdatePosts] = useState<boolean>(false);
   return (
     <div className="h-screen overflow-x-hidden bg-slate-100">
       <Head>
@@ -20,7 +22,7 @@ const Home = (props: Props) => {
       <Header />
       <main className='flex'>
         <Sidebar />
-        <UserFeed />
+        <UserFeed updatePosts={updatePosts} setUpdatePosts={setUpdatePosts} />
       </main>
     </div>
   )
