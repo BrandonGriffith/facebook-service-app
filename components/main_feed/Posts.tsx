@@ -1,4 +1,7 @@
-import { collection, getDocs, QueryDocumentSnapshot, QuerySnapshot } from "firebase/firestore";
+import {
+    query, collection, orderBy, getDocs,
+    QueryDocumentSnapshot, QuerySnapshot
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import Post from "./Post";
@@ -9,7 +12,8 @@ const Posts = () => {
     useEffect(() => {
         const getPosts = async () => {
             console.log("Getting Posts");
-            const data = await getDocs(collection(db, "posts"));
+            const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+            const data = await getDocs(q);
             setAllPosts(data);
         }
         getPosts();

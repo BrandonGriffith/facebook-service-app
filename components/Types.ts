@@ -32,5 +32,5 @@ export interface postProps {
     email: string,
     image: string,
     postImage: string,
-    createdAt: string
+    createdAt: any
 }
