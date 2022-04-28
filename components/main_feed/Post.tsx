@@ -4,8 +4,8 @@ import { postProps } from "../Types"
 const Post = (props: postProps) => {
     return (
         <div className="flex flex-col">
-            <div>
-                <div className="flex">
+            <div className="p-4 bg-white shadow-md mt-4 rounded-lg">
+                <div className="flex space-x-2 items-center">
                     <Image
                         src={props.image}
                         alt={props.name}
@@ -14,7 +14,9 @@ const Post = (props: postProps) => {
                         className="rounded-full cursor-pointer"
                     />
                     <div>
-                        <p className="text-sm font-bold">{props.name}</p>
+                        <p className="text-sm font-bold">
+                            {props.name}
+                        </p>
                         <p className="text-xs text-gray-400">
                             {new Date(props.createdAt?.toDate()).toLocaleString()}
                         </p>
