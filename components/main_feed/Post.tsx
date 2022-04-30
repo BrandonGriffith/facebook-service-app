@@ -34,16 +34,16 @@ const Post = (props: postProps) => {
                 </div>
             )}
             <div className="flex justify-evenly items-center rounded-md bg-white shadow-md text-gray-400 border-t-2">
-                <div>
-                    <ThumbUpIcon className="h-8 pl-1" />
+                <div className="inputBoxIcon hover:text-blue-400 active:bg-blue-200">
+                    <ThumbUpIcon className="h-8" />
                     <p className="text-sm pl-2">like</p>
                 </div>
-                <div>
-                    <ChatAltIcon className="h-8 pl-4" />
+                <div className="inputBoxIcon hover:text-blue-400 active:bg-blue-200">
+                    <ChatAltIcon className="h-8" />
                     <p className="text-sm pl-2">comment</p>
                 </div>
-                <div>
-                    <ShareIcon className="h-8 pl-2" />
+                <div className="inputBoxIcon hover:text-blue-400 active:bg-blue-200">
+                    <ShareIcon className="h-8" />
                     <p className="text-sm pl-2">Share</p>
                 </div>
             </div>
