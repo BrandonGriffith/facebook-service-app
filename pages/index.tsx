@@ -30,7 +30,6 @@ const Home = (props: Props) => {
   )
 }
 export default Home
-
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getSession(context);
   return {
