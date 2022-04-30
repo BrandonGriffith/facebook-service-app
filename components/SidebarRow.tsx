@@ -2,7 +2,7 @@ import Image from "next/image"
 import { IconProps } from "./Types"
 
 
-const SidebarRow = (props: IconProps) => {
+const SidebarRow = (props: any) => {
     return (
         <div className="flex items-center space-x-2 p-2 rounded-xl 
         cursor-pointer hover:bg-gray-200">
