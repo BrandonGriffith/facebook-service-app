@@ -1,7 +1,7 @@
 type HeroIcon = (props: React.ComponentProps<'svg'>) => JSX.Element;
 type Nullable<T> = T | null;
 export interface IconProps {
-    Icon?: HeroIcon,
+    Icon: HeroIcon,
     active?: boolean,
     title?: string,
     src?: string

@@ -49,9 +49,9 @@ const Header = () => {
                     className="rounded-full"
                 />
                 <p className="font-semibold pr-3 pl-3 whitespace-nowrap">{session.user.name}</p>
-                <ViewGridIcon className='icon' />
-                <ChatIcon className='icon' />
-                <BellIcon className='icon' />
+                <ViewGridIcon className='icon animate-spin' />
+                <ChatIcon className='icon animate-bounce bg-blue-200' />
+                <BellIcon className='icon animate-bounce bg-blue-200' />
                 <ChevronDownIcon className='icon' />
             </div>
         </div>

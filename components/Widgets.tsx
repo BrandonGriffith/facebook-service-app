@@ -12,20 +12,30 @@ const Widgets = () => {
                     <DotsHorizontalIcon className="h-5" />
                 </div>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center relative">
                 <UserCircleIcon className="h-14 text-blue-400" /><h1>Default User</h1>
+                <div className="absolute bottom-1 left-8 bg-green-400 
+                h-4 w-4 rounded-full animate-pulse"></div>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center relative">
                 <UserCircleIcon className="h-14 text-blue-400" /><h1>Default User</h1>
+                <div className="absolute bottom-1 left-8 bg-green-400 
+                h-4 w-4 rounded-full animate-pulse"></div>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center relative">
                 <UserCircleIcon className="h-14 text-blue-400" /><h1>Default User</h1>
+                <div className="absolute bottom-1 left-8 bg-green-400 
+                h-4 w-4 rounded-full animate-pulse"></div>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center relative">
                 <UserCircleIcon className="h-14 text-blue-400" /><h1>Default User</h1>
+                <div className="absolute bottom-1 left-8 bg-green-400 
+                h-4 w-4 rounded-full animate-pulse"></div>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center relative">
                 <UserCircleIcon className="h-14 text-blue-400" /><h1>Default User</h1>
+                <div className="absolute bottom-1 left-8 bg-green-400 
+                h-4 w-4 rounded-full animate-pulse"></div>
             </div>
         </div>
     )
