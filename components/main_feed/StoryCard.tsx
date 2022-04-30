@@ -6,6 +6,7 @@ const StoryCard = (props: StoryProps) => {
         <div className="relative cursor-pointer overflow-x w-[70px] h-40 xl:w-40 xl:h-60 p-1">
             <Image
                 src={props.profile}
+                alt="pro"
                 width={40}
                 height={40}
                 objectFit="cover"
@@ -17,6 +18,7 @@ const StoryCard = (props: StoryProps) => {
             bottom-5 left-5 font-bold hidden xl:inline-flex ">{props.name}</h1>
             <Image
                 src={props.src}
+                alt="pr"
                 layout="fill"
                 className="object-cover filter z-1 rounded-full xl:rounded-xl brightness-75 p-1"
                 priority
