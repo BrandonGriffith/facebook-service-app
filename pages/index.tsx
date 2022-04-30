@@ -11,8 +11,8 @@ import Widgets from '../components/Widgets'
 
 
 const Home = (props: Props) => {
-  if (!props.session) return <Login />
   const [updatePosts, setUpdatePosts] = useState<boolean>(false);
+  if (!props.session) return <Login />
   return (
     <div className="h-screen overflow-y-hidden bg-slate-100">
       <Head>
