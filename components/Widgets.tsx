@@ -1,5 +1,5 @@
 import { SearchIcon } from "@heroicons/react/outline"
-import { DotsHorizontalIcon, VideoCameraIcon } from "@heroicons/react/solid"
+import { DotsHorizontalIcon, UserCircleIcon, VideoCameraIcon } from "@heroicons/react/solid"
 
 const Widgets = () => {
     return (
@@ -11,6 +11,21 @@ const Widgets = () => {
                     <SearchIcon className="h-5" />
                     <DotsHorizontalIcon className="h-5" />
                 </div>
+            </div>
+            <div className="flex items-center">
+                <UserCircleIcon className="h-14 text-blue-400" /><h1>Default User</h1>
+            </div>
+            <div className="flex items-center">
+                <UserCircleIcon className="h-14 text-blue-400" /><h1>Default User</h1>
+            </div>
+            <div className="flex items-center">
+                <UserCircleIcon className="h-14 text-blue-400" /><h1>Default User</h1>
+            </div>
+            <div className="flex items-center">
+                <UserCircleIcon className="h-14 text-blue-400" /><h1>Default User</h1>
+            </div>
+            <div className="flex items-center">
+                <UserCircleIcon className="h-14 text-blue-400" /><h1>Default User</h1>
             </div>
         </div>
     )
