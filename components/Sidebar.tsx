@@ -7,11 +7,11 @@ import { useSession } from "next-auth/react"
 import SidebarRow from "./SidebarRow"
 
 
-const Sidebar = () => {
+const Sidebar = (guestLogin: any) => {
     const { data: session }: any = useSession()
     return (
         <div className="p-4 mt-4 max-w-[550px]">
-            <SidebarRow src={session.user.image} title={session.user.name} />
+            <SidebarRow src={!guestLogin ? session.user.image : "/favicon.ico"} title={!guestLogin ? session.user.name : "Guest Account"} />
             <SidebarRow Icon={UserIcon} title="Friends" />
             <SidebarRow Icon={UserGroupIcon} title="Groups" />
             <SidebarRow Icon={ShoppingBagIcon} title="Marketplace" />

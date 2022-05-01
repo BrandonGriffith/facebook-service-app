@@ -36,5 +36,6 @@ export interface postProps {
 }
 export interface updateProps {
     updatePosts: boolean,
-    setUpdatePosts: Function
+    setUpdatePosts: Function,
+    guestLogin?: boolean
 }

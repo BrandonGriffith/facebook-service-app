@@ -5,11 +5,12 @@ import HeaderIcon from './HeaderIcon';
 import { signOut, useSession } from 'next-auth/react';
 
 
-const Header = () => {
+const Header = ({ guestLogin, setGuestLogin }: any) => {
     const { data: session }: any = useSession()
     const userSignOut = () => {
         const result: boolean = window.confirm("Do you want to logout?");
         if (result) {
+            setGuestLogin(false);
             signOut();
         } return
     }
@@ -37,18 +38,19 @@ const Header = () => {
                     <HeaderIcon Icon={ShoppingCartIcon} />
                     <HeaderIcon Icon={UserGroupIcon} />
                     <p className="font-semibold sm:pr-3 sm:pl-3 whitespace-nowrap cursor-pointer
-                    hover:text-blue-400 text-center mt-2 sm:mt-4" onClick={() => userSignOut()}>Logout</p>
+                    hover:text-blue-400 text-center mt-2 sm:mt-4"
+                        onClick={() => userSignOut()}>Logout</p>
                 </div>
             </div>
             <div className='hidden lg:inline-flex items-center'>
                 <Image
-                    src={session.user.image}
+                    src={!guestLogin ? session.user.image : "/favicon.ico"}
                     height={40}
                     width={40}
                     alt="userProfilePic"
                     className="rounded-full"
                 />
-                <p className="font-semibold pr-3 pl-3 whitespace-nowrap">{session.user.name}</p>
+                <p className="font-semibold pr-3 pl-3 whitespace-nowrap">{!guestLogin ? session.user.name : "Guest Account"}</p>
                 <ViewGridIcon className='icon animate-spin' />
                 <ChatIcon className='icon animate-bounce bg-blue-200' />
                 <BellIcon className='icon animate-bounce bg-blue-200' />

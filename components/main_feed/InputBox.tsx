@@ -21,10 +21,10 @@ const InputBox = (props: updateProps) => {
         if (!inputRef.current.value) return;
         const coll = collection(db, "posts");
         addDoc(coll, {
-            name: session.user.name,
-            email: session.user.email,
+            name: !props.guestLogin ? session.user.name : "Guest Account",
+            email: !props.guestLogin ? session.user.email : "Guest Account",
             message: inputRef.current.value,
-            image: session.user.image,
+            image: !props.guestLogin ? session.user.image : "/favicon.ico",
             createdAt: serverTimestamp()
         }).then(docu => {
             if (ImageToUpload) {
@@ -65,7 +65,7 @@ const InputBox = (props: updateProps) => {
         rounded-xl shadow-md">
             <div className="flex p-2 space-x-5 items-center">
                 <Image
-                    src={session.user.image}
+                    src={!props.guestLogin ? session.user.image : "/favicon.ico"}
                     height={50}
                     width={50}
                     layout="fixed"
